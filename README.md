@@ -3,6 +3,11 @@
 ## Setup
 - Clone this project on php server XAMPP/WAMP.
 - This project uses [Composer] (https://getcomposer.org/) as Dependency Manager
+- Use following command at project root to auto install required dependencies
+
+
+    composer install
+- Use .env.example to create .env file
 - Update .env with correct db connection details
 - Migrate db and run seeder for sample data
 - Run or Test code using **Postman** or any other Rest Client
@@ -13,7 +18,7 @@
 GET http://localhost/sarva/public/index.php/api/v1/employees <br />
 GET http://localhost/sarva/public/index.php/api/v1/employee/3 <br />
 GET http://localhost/sarva/public/index.php/api/v1/employee?salary=62504
-
+GET http://localhost/sarva-lumen/public/index.php/api/v1/employee?zip_code=91004&sort=first_name
 
 ## Sample response
 

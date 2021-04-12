@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
+use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
 {
@@ -20,19 +21,17 @@ class EmployeeController extends Controller
 
     public function getById($id)
     {
-        $product = Employee::find($id);
-
-        return response()->json($product);
+        $employees = Employee::find($id);
+        return response()->json($employees);
     }
 
-    public function getByParams()
+    public function getByParams(Request $request)
     {
-        $salary = request('salary');
-        $zip_code = request('zip_code');
+        $matchParams = $request->all();
+        unset($matchParams['sort']);
+        $sort = request('sort', 'id');
 
-        $matchParams = ['salary' => $salary];
-
-        $employees = Employee::where($matchParams)->get();
+        $employees = Employee::where($matchParams)->orderBy($sort, 'asc')->get();
 
         if ($employees) {
             return response()->json($employees);
